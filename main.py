@@ -160,7 +160,7 @@ if path:
     st.header("Create Prompt")
     question = st.text_area("Ask Question", value="", height=100, key="question")
     if question:
-        prompt = st.session_state.damj.create_prompt(question=question)
+        prompt = st.session_state.damj.create_prompt(question=question,copy_to_clipboard=False)
         st.session_state.damj.prompt = prompt
 
 
