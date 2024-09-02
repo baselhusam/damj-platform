@@ -1,9 +1,11 @@
 import os
+import platform
 import pyperclip
-from damj import Damj
 import streamlit as st
+from damj import Damj
 from streamlit_file_browser import st_file_browser
 from streamlit_tags import st_tags
+
 from utils import new_line
 
 # Page Config
@@ -43,6 +45,10 @@ the tags to categorize your prompts.
 st.divider()
 
 st.html("<h3 align='center'>Project Path</h2>")
+st.info("""
+If you are running the platform using **Docker**, make sure to write the correct path by writing **`/mnt/`** before the path. 
+E.g. if you did deploy by `docker run --name damj_platform -p 7878:7878 -v /Users/username/Projects/:/mnt/Projects damj`, you should write `/mnt/Projects` as the path.
+""")
 path = st.text_input("Project Path", label_visibility='collapsed', placeholder="E.g. C:/Users/Username/Documents/Project")
 st.divider()
 
@@ -162,16 +168,16 @@ if path:
     # SIDEBAR PROMPT GENERATOR
     if st.session_state.damj is not None:
         with st.sidebar:
-            col1, col2, col3 = st.columns([1, 3, 1])
-            if col2.button("Copy to Clipboard", use_container_width=True):
-                pyperclip.copy(st.session_state.ui_prompt)
-                st.toast("Copied to clipboard!", icon="🌟", )
+            if not platform.system() == "Linux":
+                col1, col2, col3 = st.columns([1, 3, 1])
+                if col2.button("Copy to Clipboard", use_container_width=True):
+                    pyperclip.copy(st.session_state.ui_prompt)
+                    st.toast("Copied to clipboard!", icon="🌟", )
             st.header("Prompt Generator")
             prompt, markdown = st.tabs(["  󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 Prompt 󠁪 󠁪 󠁪 󠁪 󠁪  󠁪 󠁪 󠁪 󠁪 󠁪  ", "  󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪Markdown 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪  "])
             with prompt:
                 ui_prompt = st.text_area("Prompt", st.session_state.damj.prompt, height=950, label_visibility='hidden')
                 if ui_prompt:
-                    # st.session_state.damj.prompt = ui_prompt
                     st.session_state.ui_prompt = ui_prompt
             with markdown:
                 with st.container(height=950, border=False):
