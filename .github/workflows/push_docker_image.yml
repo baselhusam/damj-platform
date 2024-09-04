@@ -1,0 +1,17 @@
+name: Push Image to Docker Hub
+
+on:
+  push:
+   branches: [ main ]
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKERPW}}
+        docker image build -t baselhusam/damj:latest .
+        docker push baselhusam/damj:latest
