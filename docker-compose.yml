@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  damj:
+    image: baselhusam/damj:latest
+    container_name: damj
+    ports:
+      - "7878:7878"
+    volumes:
+      - ~/Desktop:/app/Desktop  # Mount the user's Desktop to the /app/Desktop directory in the container
+    command: streamlit run app.py --server.port=7878 --server.enableCORS=false
