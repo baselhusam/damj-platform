@@ -1,8 +1,15 @@
+"""
+The Main Module for the Streamlit UI of the Damj Platform.
+
+Created On: 15 Aug 2024
+Author: @Basel Husam
+"""
 import os
 import platform
 import pyperclip
-import streamlit as st
 from damj import Damj
+
+import streamlit as st
 from streamlit_file_browser import st_file_browser
 from streamlit_tags import st_tags
 
@@ -25,6 +32,7 @@ if 'path' not in st.session_state:
 if "ui_prompt" not in st.session_state:
     st.session_state.ui_prompt = ""
 
+
 # Logo
 LOGO = os.path.join("assets", "logo_small.png")
 LOGO_HORIZ = os.path.join("assets", "logo_small.png")
@@ -35,6 +43,7 @@ st.html("""
 </style>
 """)
 
+
 # Title & Description
 st.html("<h1 align='center'>Damj Platform</h1>")
 st.write("""
@@ -44,12 +53,15 @@ the tags to categorize your prompts.
 """)
 st.divider()
 
+
+# Project Path
 st.html("<h3 align='center'>Project Path</h2>")
 st.info("""
 If you are running the platform using **Docker**, make sure to write the correct path by writing **`/mnt/`** before the path. 
 E.g. if you did deploy by `docker run --name damj_platform -p 7878:7878 -v /Users/username/Projects/:/mnt/Projects damj`, you should write `/mnt/Projects` as the path.
 """)
-path = st.text_input("Project Path", label_visibility='collapsed', placeholder="E.g. C:/Users/Username/Documents/Project")
+path = st.text_input("Project Path", label_visibility='collapsed',
+                     placeholder="E.g. C:/Users/Username/Documents/Project")
 st.divider()
 
 if path:
@@ -85,10 +97,10 @@ if path:
 
     st.markdown("##### Snippet Marker")
     snippet_marker = st.selectbox(
-        "Snippet Marker", label_visibility='collapsed', 
+        "Snippet Marker", label_visibility='collapsed',
         options=["```", "'''", '"""'], index=0
         )
-    
+
     st.session_state.damj = Damj(
         cwd=path,
         whitelist_files=whitelist_files,
@@ -160,7 +172,7 @@ if path:
     st.header("Create Prompt")
     question = st.text_area("Ask Question", value="", height=100, key="question")
     if question:
-        prompt = st.session_state.damj.create_prompt(question=question,copy_to_clipboard=False)
+        prompt = st.session_state.damj.create_prompt(question=question, copy_to_clipboard=False)
         st.session_state.damj.prompt = prompt
 
 
@@ -174,9 +186,11 @@ if path:
                     pyperclip.copy(st.session_state.ui_prompt)
                     st.toast("Copied to clipboard!", icon="🌟", )
             st.header("Prompt Generator")
-            prompt, markdown = st.tabs(["  󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 Prompt 󠁪 󠁪 󠁪 󠁪 󠁪  󠁪 󠁪 󠁪 󠁪 󠁪  ", "  󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪Markdown 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪  "])
+            prompt, markdown = st.tabs(["  󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 Prompt 󠁪 󠁪 󠁪 󠁪 󠁪  󠁪 󠁪 󠁪 󠁪 󠁪  ",
+                                        "  󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪Markdown 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪 󠁪  "])
             with prompt:
-                ui_prompt = st.text_area("Prompt", st.session_state.damj.prompt, height=950, label_visibility='hidden')
+                ui_prompt = st.text_area("Prompt", st.session_state.damj.prompt,
+                                         height=950, label_visibility='hidden')
                 if ui_prompt:
                     st.session_state.ui_prompt = ui_prompt
             with markdown:
