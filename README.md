@@ -1,4 +1,4 @@
-![background](assets/damj_platform_background.png)
+![background](https://github.com/baselhusam/damj-platform/blob/main/assets/damj_platform_background.png?raw=true)
 # Damj Platform
 
 ## Overview
