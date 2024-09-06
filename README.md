@@ -79,7 +79,10 @@ The platform will be accessible at `http://localhost:7878`.
 
 To use the Damj Platform, simply select the directory of your project, and the platform will automatically load and process the files as per the options you choose. 
 
-**[Here is a video walkthrough](#)** to guide you through the platform's features and show you how to get the most out of it.
+Here is a video walkthrough to guide you through the platform's features and show you how to get the most out of it.
+
+https://github.com/user-attachments/assets/7361da26-5920-44f7-87ad-2c9f12908fa9
+
 
 ## Contributors
 
