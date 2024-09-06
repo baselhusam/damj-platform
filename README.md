@@ -1,6 +1,9 @@
 ![background](https://github.com/baselhusam/damj-platform/blob/main/assets/damj_platform_background.png?raw=true)
 # Damj Platform
 
+![Damj_Platform_Demo-ezgif com-video-to-gif-converter (1)](https://github.com/user-attachments/assets/9d2e7852-a9f7-4a68-b6cb-2ef386448568)
+
+
 ## Overview
 
 **Damj Platform** is a user-friendly web interface built on top of the Damj Python Package. It provides an intuitive and efficient way to use Damj without needing to manually interact with the Python Package. The Platform simplifies the process, making it **Faster** and **Easier** to perform complex operations by leveraging the power of Streamlit for a sleek and responsive UI. 
