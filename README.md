@@ -52,11 +52,8 @@ Open your browser and go to `http://localhost:8501` to start using the platform.
 To deploy the platform using Docker:
 
 ```bash
-# Pull the Docker image from Docker Hub
-docker pull baselhusam/damj
-
 # Run the Docker container
-docker run --name damj -p 7878:7878 -v </path/to/project>:</mnt/project> baselhusam/damj
+docker run --restart=always -d --name damj -p 7878:7878 -v </path/to/project>:</mnt/project> baselhusam/damj
 ```
 
 Access the platform at `http://localhost:7878`.
