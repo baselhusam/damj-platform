@@ -9,3 +9,4 @@ services:
     volumes:
       - ~/Desktop:/app/Desktop  # Mount the user's Desktop to the /app/Desktop directory in the container
     command: streamlit run app.py --server.port=7878 --server.enableCORS=false
+    restart: always
